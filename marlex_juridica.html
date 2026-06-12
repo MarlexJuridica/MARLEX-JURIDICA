@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARLEX JURÍDICA — Asesorías Jurídicas en Colombia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162336;
+    --gold: #C9A84C;
+    --gold-light: #E2C97E;
+    --cream: #F8F5EF;
+    --gray: #6B7280;
+    --gray-light: #E5E7EB;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,27,42,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1.4rem;
+    color: var(--white); letter-spacing: 0.05em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 0.5rem 1.2rem; border-radius: 4px;
+    font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a2d42 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 100px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; max-width: 1100px; width: 100%;
+    align-items: center; position: relative;
+  }
+  .hero-text { }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--white); margin-bottom: 1.5rem;
+  }
+  .hero-title em { color: var(--gold); font-style: normal; }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.65);
+    margin-bottom: 2.5rem; max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 0.9rem 2rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+    text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 0.9rem 2rem; border-radius: 4px;
+    font-weight: 600; font-size: 0.9rem; letter-spacing: 0.04em;
+    text-decoration: none; transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* BALANZA ANIMADA */
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .scale-container {
+    position: relative; width: 280px; height: 300px;
+  }
+  .scale-svg { width: 100%; height: 100%; }
+  @keyframes tiltLeft {
+    0%,100% { transform: rotate(0deg); }
+    50% { transform: rotate(-8deg); }
+  }
+  @keyframes tiltRight {
+    0%,100% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+  }
+  @keyframes beamSwing {
+    0%,100% { transform: rotate(0deg); }
+    50% { transform: rotate(-6deg); }
+  }
+  .beam-group { transform-origin: 140px 100px; animation: beamSwing 4s ease-in-out infinite; }
+  .pan-left { transform-origin: 70px 140px; animation: tiltLeft 4s ease-in-out infinite; }
+  .pan-right { transform-origin: 210px 140px; animation: tiltRight 4s ease-in-out infinite; }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--gold); padding: 1.5rem 2rem;
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--navy);
+  }
+  .stat-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(13,27,42,0.7);
+  }
+
+  /* SECTION */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700; line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--gray); line-height: 1.8; max-width: 560px; }
+
+  /* SERVICIOS */
+  #servicios { background: var(--white); }
+  .services-header { margin-bottom: 3rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    border: 1px solid var(--gray-light);
+    border-radius: 8px; padding: 2rem;
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 3px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .service-card:hover { box-shadow: 0 8px 30px rgba(13,27,42,0.08); transform: translateY(-3px); }
+  .service-card:hover::after { width: 100%; }
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem;
+  }
+  .service-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.7; }
+
+  /* POR QUE NOSOTROS */
+  #nosotros { background: var(--cream); }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+  .why-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .why-num {
+    flex-shrink: 0; width: 40px; height: 40px;
+    background: var(--navy); color: var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.9rem;
+  }
+  .why-text h4 { font-weight: 600; margin-bottom: 0.3rem; }
+  .why-text p { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+  .why-quote {
+    background: var(--navy); color: var(--white);
+    border-radius: 8px; padding: 3rem;
+    position: relative;
+  }
+  .why-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem; line-height: 0.8;
+    color: var(--gold); opacity: 0.3;
+    position: absolute; top: 1.5rem; left: 1.5rem;
+  }
+  .why-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; line-height: 1.6; font-style: italic;
+    color: var(--white); position: relative; z-index: 1;
+  }
+  .why-quote cite {
+    display: block; margin-top: 1.5rem;
+    font-size: 0.8rem; font-style: normal; color: var(--gold);
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* CONTACTO */
+  #contacto { background: var(--white); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-top: 3rem;
+  }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; margin-bottom: 1.5rem;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--navy); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-detail h4 { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .contact-detail p, .contact-detail a {
+    font-size: 0.88rem; color: var(--gray); text-decoration: none;
+  }
+  .contact-detail a:hover { color: var(--gold); }
+
+  .wa-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #25D366; color: white;
+    padding: 1rem 2rem; border-radius: 8px; text-decoration: none;
+    font-weight: 700; font-size: 0.95rem;
+    margin-top: 1.5rem; transition: all 0.2s;
+  }
+  .wa-btn:hover { background: #1ebe5c; transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.5);
+    padding: 2rem; text-align: center;
+    font-size: 0.8rem; border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  footer strong { color: var(--gold); }
+
+  /* CHATBOT */
+  #chat-toggle {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--gold); border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; transition: all 0.2s;
+  }
+  #chat-toggle:hover { transform: scale(1.1); background: var(--gold-light); }
+  #chat-toggle .badge {
+    position: absolute; top: -4px; right: -4px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #ef4444; color: white; font-size: 0.65rem;
+    font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+
+  #chatbot {
+    position: fixed; bottom: 6rem; right: 2rem; z-index: 200;
+    width: 360px; max-height: 560px;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(13,27,42,0.25);
+    display: none; flex-direction: column;
+    overflow: hidden; border: 1px solid var(--gray-light);
+  }
+  #chatbot.open { display: flex; }
+
+  .chat-header {
+    background: var(--navy); padding: 1rem 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .chat-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .chat-header-info h4 { color: white; font-size: 0.9rem; font-weight: 600; }
+  .chat-header-info p { color: rgba(255,255,255,0.5); font-size: 0.75rem; }
+  .chat-online { display: flex; align-items: center; gap: 0.4rem; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 1rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+    max-height: 380px;
+  }
+  .msg {
+    max-width: 80%; padding: 0.7rem 1rem;
+    border-radius: 12px; font-size: 0.85rem; line-height: 1.5;
+    animation: msgIn 0.2s ease-out;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .msg.bot {
+    background: var(--cream); color: var(--navy);
+    border-bottom-left-radius: 4px; align-self: flex-start;
+  }
+  .msg.user {
+    background: var(--navy); color: white;
+    border-bottom-right-radius: 4px; align-self: flex-end;
+  }
+  .msg a { color: #25D366; font-weight: 600; }
+
+  .chat-options {
+    padding: 0 1rem 0.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .chat-opt {
+    background: transparent; border: 1px solid var(--gold);
+    color: var(--navy); padding: 0.4rem 0.8rem;
+    border-radius: 20px; font-size: 0.8rem; cursor: pointer;
+    transition: all 0.15s; font-family: 'Inter', sans-serif;
+  }
+  .chat-opt:hover { background: var(--gold); color: var(--navy); }
+
+  .chat-input-row {
+    border-top: 1px solid var(--gray-light);
+    padding: 0.75rem 1rem;
+    display: flex; gap: 0.5rem;
+  }
+  .chat-input-row input {
+    flex: 1; border: 1px solid var(--gray-light);
+    border-radius: 8px; padding: 0.6rem 0.9rem;
+    font-size: 0.85rem; font-family: 'Inter', sans-serif;
+    outline: none; color: var(--navy);
+  }
+  .chat-input-row input:focus { border-color: var(--gold); }
+  .chat-send {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--gold); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: all 0.15s;
+  }
+  .chat-send:hover { background: var(--gold-light); }
+
+  .typing { display: flex; align-items: center; gap: 4px; padding: 0.7rem 1rem; }
+  .typing span {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--gray); animation: bounce 1.2s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%,60%,100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-visual { order: -1; }
+    .scale-container { width: 180px; height: 190px; }
+    .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    #chatbot { width: calc(100vw - 2rem); right: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MARLEX<span>.</span>JURÍDICA</div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#contacto" class="nav-cta">Agendar Cita</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <p class="hero-eyebrow">⚖ Asesoría Jurídica en Colombia</p>
+      <h1 class="hero-title">
+        Su derecho,<br>
+        nuestra <em>misión</em>
+      </h1>
+      <p class="hero-desc">
+        MARLEX JURÍDICA le ofrece asesoramiento legal integral bajo la jurisdicción colombiana. Defendemos sus intereses con experiencia, ética y compromiso.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">⚖ Agendar consulta</a>
+        <a href="#servicios" class="btn-outline">Ver servicios →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="scale-container">
+        <svg class="scale-svg" viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Base -->
+          <rect x="120" y="260" width="40" height="20" rx="4" fill="#C9A84C" opacity="0.9"/>
+          <rect x="100" y="275" width="80" height="8" rx="4" fill="#C9A84C" opacity="0.6"/>
+          <!-- Column -->
+          <rect x="137" y="100" width="6" height="165" rx="3" fill="#C9A84C" opacity="0.7"/>
+          <!-- Top sphere -->
+          <circle cx="140" cy="95" r="8" fill="#C9A84C"/>
+          <!-- Beam group -->
+          <g class="beam-group">
+            <!-- beam -->
+            <rect x="60" y="97" width="160" height="6" rx="3" fill="#E2C97E"/>
+            <!-- Left chain -->
+            <line x1="80" y1="103" x2="75" y2="145" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <!-- Right chain -->
+            <line x1="200" y1="103" x2="205" y2="145" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <!-- Left pan -->
+            <g class="pan-left">
+              <ellipse cx="72" cy="155" rx="28" ry="8" fill="#C9A84C" opacity="0.85"/>
+              <path d="M44 155 Q72 165 100 155" stroke="#A8873A" stroke-width="1.5" fill="none"/>
+            </g>
+            <!-- Right pan -->
+            <g class="pan-right">
+              <ellipse cx="208" cy="155" rx="28" ry="8" fill="#C9A84C" opacity="0.85"/>
+              <path d="M180 155 Q208 165 236 155" stroke="#A8873A" stroke-width="1.5" fill="none"/>
+            </g>
+          </g>
+          <!-- Decorative circles -->
+          <circle cx="50" cy="100" r="3" fill="#C9A84C" opacity="0.3"/>
+          <circle cx="230" cy="100" r="3" fill="#C9A84C" opacity="0.3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Casos atendidos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Años de experiencia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">95%</div>
+      <div class="stat-label">Clientes satisfechos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Respuesta garantizada</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="services-header">
+      <p class="section-eyebrow">Lo que hacemos</p>
+      <h2 class="section-title">Áreas de práctica jurídica</h2>
+      <p class="section-desc">Brindamos asesoría especializada en las principales ramas del derecho colombiano, con soluciones prácticas y efectivas.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏛</div>
+        <h3 class="service-title">Derecho Civil</h3>
+        <p class="service-desc">Contratos, obligaciones, responsabilidad civil, sucesiones, bienes inmuebles y procesos declarativos ante la jurisdicción civil colombiana.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👨‍👩‍👧</div>
+        <h3 class="service-title">Derecho de Familia</h3>
+        <p class="service-desc">Divorcios, custodia de menores, alimentos, unión marital de hecho, adopción y procesos de filiación.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3 class="service-title">Derecho Comercial</h3>
+        <p class="service-desc">Constitución de sociedades, contratos mercantiles, resolución de conflictos comerciales y reestructuración empresarial.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <h3 class="service-title">Derecho Laboral</h3>
+        <p class="service-desc">Despidos injustificados, acoso laboral, liquidaciones, prestaciones sociales y defensa de derechos del trabajador y empleador.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3 class="service-title">Derecho Inmobiliario</h3>
+        <p class="service-desc">Compraventa de inmuebles, arrendamientos, propiedad horizontal, gestión de títulos y litigios sobre bienes raíces.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3 class="service-title">Derecho Administrativo</h3>
+        <p class="service-desc">Recursos ante entidades del Estado, acciones de tutela, derechos de petición, nulidades y restablecimiento del derecho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ NOSOTROS -->
+<section id="nosotros">
+  <div class="section-inner">
+    <p class="section-eyebrow">¿Por qué elegirnos?</p>
+    <h2 class="section-title">Compromiso con la justicia</h2>
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-num">1</div>
+          <div class="why-text">
+            <h4>Conocimiento profundo del sistema colombiano</h4>
+            <p>Dominio actualizado del ordenamiento jurídico colombiano, jurisprudencia de la Corte Suprema y normativa vigente.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">2</div>
+          <div class="why-text">
+            <h4>Atención personalizada</h4>
+            <p>Cada caso es único. Analizamos su situación particular y diseñamos estrategias jurídicas a su medida.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">3</div>
+          <div class="why-text">
+            <h4>Transparencia total</h4>
+            <p>Le informamos en lenguaje claro sobre el estado de su proceso, sin tecnicismos innecesarios ni sorpresas.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">4</div>
+          <div class="why-text">
+            <h4>Respuesta ágil</h4>
+            <p>Garantizamos respuesta en menos de 24 horas. Su asunto jurídico no puede esperar indefinidamente.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-quote">
+        <blockquote>
+          "La ley no es un obstáculo, es el camino. En MARLEX JURÍDICA la convertimos en su mejor herramienta."
+        </blockquote>
+        <cite>— Marlex Jurídica, Colombia</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <p class="section-eyebrow">Contáctenos</p>
+    <h2 class="section-title">Hablemos de su caso</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Estamos aquí para ayudarle</h3>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail">
+            <h4>Correo electrónico</h4>
+            <a href="mailto:marlex.juridica@gmail.com">marlex.juridica@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⚖️</div>
+          <div class="contact-detail">
+            <h4>Jurisdicción</h4>
+            <p>República de Colombia — Todo el territorio nacional</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-detail">
+            <h4>Horario de atención</h4>
+            <p>Lunes a viernes: 8:00 AM – 6:00 PM<br>Sábados: 9:00 AM – 1:00 PM</p>
+          </div>
+        </div>
+        <a href="https://wa.me/573000000000?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20asesor%C3%ADa%20jur%C3%ADdica%20con%20MARLEX%20JUR%C3%ADDICA" target="_blank" class="wa-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Contactar por WhatsApp
+        </a>
+        <p style="font-size:0.75rem; color:var(--gray); margin-top:0.5rem;">* Actualice el número de WhatsApp en el enlace</p>
+      </div>
+      <div>
+        <div style="background:var(--navy); border-radius:12px; padding:2.5rem; color:white;">
+          <h3 style="font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:1rem; color:var(--gold);">¿Necesita asesoría inmediata?</h3>
+          <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:1.5rem;">
+            Use nuestro asistente jurídico virtual (botón dorado inferior derecho) para describir su caso, agendar su cita y conectarse directamente con nosotros vía WhatsApp.
+          </p>
+          <div style="display:flex; align-items:center; gap:0.8rem; padding:1rem; background:rgba(255,255,255,0.05); border-radius:8px; border:1px solid rgba(201,168,76,0.2);">
+            <span style="font-size:1.5rem;">⚡</span>
+            <div>
+              <p style="font-weight:600; font-size:0.9rem;">Respuesta en menos de 24 horas</p>
+              <p style="font-size:0.8rem; color:rgba(255,255,255,0.5);">Primera consulta orientativa sin costo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>MARLEX JURÍDICA</strong> — Asesorías Jurídicas en Colombia<br>
+  <a href="mailto:marlex.juridica@gmail.com" style="color:var(--gold); text-decoration:none;">marlex.juridica@gmail.com</a><br><br>
+  © 2025 Marlex Jurídica. Todos los derechos reservados.</p>
+</footer>
+
+<!-- CHAT TOGGLE -->
+<button id="chat-toggle" onclick="toggleChat()" title="Asistente jurídico">
+  ⚖️
+  <span class="badge" id="chat-badge">1</span>
+</button>
+
+<!-- CHATBOT -->
+<div id="chatbot">
+  <div class="chat-header">
+    <div class="chat-avatar">⚖️</div>
+    <div class="chat-header-info">
+      <h4>Asistente Marlex</h4>
+      <div class="chat-online"><span class="dot"></span><p>En línea</p></div>
+    </div>
+  </div>
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-options" id="chat-options"></div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Escriba su consulta..." onkeydown="if(event.key==='Enter') sendMessage()"/>
+    <button class="chat-send" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+// ===== CHATBOT STATE =====
+const WA_NUMBER = "573137085261"; // <-- Cambie este número
+const WA_BASE = `https://wa.me/${WA_NUMBER}?text=`;
+
+let state = {
+  step: 'welcome',
+  name: '', email: '', phone: '', asunto: '', fecha: '', hora: ''
+};
+
+const STEPS = {
+  welcome: {
+    msg: "¡Hola! 👋 Bienvenido a **MARLEX JURÍDICA**. Soy tu asesor virtual y estoy aquí para ayudarle a agendar su consulta jurídica.\n\n¿Cómo desea continuar?",
+    options: ["📅 Agendar una cita", "❓ Hacer una consulta", "📞 Hablar directamente"]
+  },
+  get_name: {
+    msg: "Para comenzar, ¿cuál es su nombre completo?",
+    options: []
+  },
+  get_email: {
+    msg: null,
+    options: []
+  },
+  get_phone: {
+    msg: null,
+    options: []
+  },
+  get_asunto: {
+    msg: "¿Cuál es el área jurídica de su consulta?",
+    options: ["⚖️ Derecho Civil", "👨‍👩‍👧 Derecho de Familia", "🏢 Derecho Comercial", "👷 Derecho Laboral", "🏠 Derecho Inmobiliario", "📋 Otro"]
+  },
+  get_fecha: {
+    msg: "¿Qué día le gustaría su cita?",
+    options: ["Hoy", "Mañana", "Esta semana", "La próxima semana"]
+  },
+  get_hora: {
+    msg: "¿En qué horario prefiere?",
+    options: ["☀️ Mañana (8am–12pm)", "🌤 Tarde (2pm–4pm)", "📅 Cualquier hora"]
+  },
+  confirm: {
+    msg: null,
+    options: ["✅ Confirmar y contactar", "✏️ Modificar datos"]
+  }
+};
+
+function toggleChat() {
+  const c = document.getElementById('chatbot');
+  const badge = document.getElementById('chat-badge');
+  c.classList.toggle('open');
+  if (c.classList.contains('open')) {
+    badge.style.display = 'none';
+    if (document.getElementById('chat-messages').children.length === 0) {
+      setTimeout(() => initChat(), 300);
+    }
+  }
+}
+
+function initChat() {
+  state = { step: 'welcome', name:'', email:'', phone:'', asunto:'', fecha:'', hora:'' };
+  const step = STEPS.welcome;
+  addBotMessage(step.msg);
+  setTimeout(() => showOptions(step.options), 600);
+}
+
+function addBotMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  // Show typing
+  const typing = document.createElement('div');
+  typing.className = 'msg bot typing-indicator';
+  typing.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    msgs.removeChild(typing);
+    const div = document.createElement('div');
+    div.className = 'msg bot';
+    div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 900);
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg user';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showOptions(opts) {
+  const container = document.getElementById('chat-options');
+  container.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'chat-opt';
+    btn.textContent = opt;
+    btn.onclick = () => handleOption(opt);
+    container.appendChild(btn);
+  });
+}
+
+function handleOption(opt) {
+  document.getElementById('chat-options').innerHTML = '';
+  addUserMessage(opt);
+
+  if (opt === "📞 Hablar directamente") {
+    const msg = `¡Claro! Le redirijo a WhatsApp ahora mismo 👇`;
+    setTimeout(() => {
+      addBotMessage(msg);
+      setTimeout(() => {
+        const wa = WA_BASE + encodeURIComponent("Hola, me comunico desde la página web de MARLEX JURÍDICA y deseo hablar con un asesor.");
+        const msgs = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        div.className = 'msg bot';
+        div.innerHTML = `<a href="${wa}" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;background:#25D366;color:white;padding:0.5rem 1rem;border-radius:8px;text-decoration:none;font-weight:600;">💬 Abrir WhatsApp</a>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 1200);
+    }, 300);
+    return;
+  }
+
+  if (opt === "✏️ Modificar datos") {
+    state.step = 'get_name';
+    state.name=''; state.email=''; state.phone=''; state.asunto=''; state.fecha=''; state.hora='';
+    setTimeout(() => {
+      addBotMessage("Sin problema. Empecemos de nuevo. ¿Cuál es su nombre completo?");
+    }, 400);
+    return;
+  }
+
+  if (opt === "✅ Confirmar y contactar") {
+    const waText = `Hola, soy *${state.name}*. Me comunico desde la página de MARLEX JURÍDICA.\n\n📋 *Datos de mi consulta:*\n• Correo: ${state.email}\n• Teléfono: ${state.phone}\n• Área jurídica: ${state.asunto}\n• Fecha preferida: ${state.fecha}\n• Horario: ${state.hora}\n\nQuedo atento/a a su confirmación. ¡Gracias!`;
+    const wa = WA_BASE + encodeURIComponent(waText);
+    setTimeout(() => {
+      addBotMessage(`¡Perfecto, ${state.name}! 🎉 Su solicitud está lista. Haga clic abajo para enviar sus datos directamente a WhatsApp y uno de nuestros asesores le confirmará su cita.`);
+      setTimeout(() => {
+        const msgs = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        div.className = 'msg bot';
+        div.innerHTML = `<a href="${wa}" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:#25D366;color:white;padding:0.6rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700;">💬 Enviar por WhatsApp</a>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }, 1400);
+    }, 400);
+    return;
+  }
+
+  // Flow steps
+  switch(state.step) {
+    case 'welcome':
+      state.step = 'get_name';
+      setTimeout(() => addBotMessage("¡Perfecto! Para proceder, necesito algunos datos básicos.\n\n¿Cuál es su **nombre completo**?"), 400);
+      break;
+    case 'get_asunto':
+      state.asunto = opt.replace(/[⚖️👨‍👩‍👧🏢👷🏠📋]\s*/g,'').trim();
+      state.step = 'get_fecha';
+      setTimeout(() => { addBotMessage(STEPS.get_fecha.msg); setTimeout(()=>showOptions(STEPS.get_fecha.options),700); }, 400);
+      break;
+    case 'get_fecha':
+      state.fecha = opt;
+      state.step = 'get_hora';
+      setTimeout(() => { addBotMessage(STEPS.get_hora.msg); setTimeout(()=>showOptions(STEPS.get_hora.options),700); }, 400);
+      break;
+    case 'get_hora':
+      state.hora = opt.replace(/[☀️🌤📅]\s*/g,'').trim();
+      state.step = 'confirm';
+      const summary = `Perfecto. Aquí tiene un resumen de su solicitud:\n\n👤 **Nombre:** ${state.name}\n📧 **Correo:** ${state.email}\n📱 **Teléfono:** ${state.phone}\n⚖️ **Área:** ${state.asunto}\n📅 **Fecha:** ${state.fecha}\n🕐 **Horario:** ${state.hora}\n\n¿Todo correcto?`;
+      setTimeout(() => { addBotMessage(summary); setTimeout(()=>showOptions(STEPS.confirm.options),900); }, 400);
+      break;
+  }
+}
+
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  document.getElementById('chat-options').innerHTML = '';
+  addUserMessage(text);
+
+  switch(state.step) {
+    case 'get_name':
+      state.name = text;
+      state.step = 'get_email';
+      setTimeout(() => addBotMessage(`Mucho gusto, **${text}**! 😊\n\n¿Cuál es su **correo electrónico** de contacto?`), 400);
+      break;
+    case 'get_email':
+      state.email = text;
+      state.step = 'get_phone';
+      setTimeout(() => addBotMessage(`Gracias. ¿Y su **número de teléfono o WhatsApp**?`), 400);
+      break;
+    case 'get_phone':
+      state.phone = text;
+      state.step = 'get_asunto';
+      setTimeout(() => { addBotMessage(STEPS.get_asunto.msg); setTimeout(()=>showOptions(STEPS.get_asunto.options),800); }, 400);
+      break;
+    default:
+      setTimeout(() => addBotMessage("Por favor, use las opciones de botones cuando estén disponibles, o escriba su consulta libremente si desea que un asesor la revise. 😊"), 400);
+  }
+}
+</script>
+</body>
+</html>
